@@ -5,6 +5,10 @@ pipeline {
         }
     }
 
+    environment {
+        APP_ENV = 'develop'
+    }
+
     stages {
         stage('Run App') {
             steps {
