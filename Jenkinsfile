@@ -16,10 +16,16 @@ pipeline {
             }
         }
 
-        stage('Run App') {
+        stage('Deploy') {
             steps {
                 sh 'python3 app.py'
             }
+        }
+    }
+
+    post {
+        always {
+            archiveArtifacts artifacts: 'deploy.log', allowEmptyArchive: true
         }
     }
 }
