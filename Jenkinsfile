@@ -6,7 +6,7 @@ pipeline {
     }
 
     environment {
-        APP_ENV = 'Producción'
+        APP_ENV = 'production'
     }
 
     stages {
