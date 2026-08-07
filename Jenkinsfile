@@ -6,7 +6,7 @@ pipeline {
     }
 
     environment {
-        APP_ENV = 'production'
+        APP_ENV = "${env.BRANCH_NAME == 'main' ? 'production' : env.BRANCH_NAME}"
     }
 
     stages {
@@ -17,6 +17,13 @@ pipeline {
         }
 
         stage('Deploy') {
+            when {
+                anyOf {
+                    branch 'develop'
+                    branch 'staging'
+                    branch 'main'
+                }
+            }
             steps {
                 sh 'python3 app.py'
             }
